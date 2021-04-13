@@ -55,7 +55,7 @@ const Catalogue: React.FC<CatalogueProps> = ({ columns }: CatalogueProps) => {
   return (
     <div className={cn(classes.container)}>
       {columns.map((column, i) => (
-        <div key={i} className={cn(classes.column)}>
+        <div key={columns[i - 1]?.activeId} className={cn(classes.column)}>
           {column.items.map((f) => (
             <CatalogueRow
               id={f.id}
