@@ -1,8 +1,18 @@
 import React, { useMemo, useState } from "react";
 import Catalogue from "./Catalogue";
-import { catalogue } from "./Catalogue.mock";
 
-const CatalogueContainer = () => {
+export interface CatalogueItem {
+  id: number;
+  text: string;
+  href?: string;
+  items?: CatalogueItem[];
+}
+
+interface CatalogueContainerProps {
+  catalogue: CatalogueItem[];
+}
+
+const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ catalogue }) => {
   const [activeIds, setActiveIds] = useState<number[]>([]);
   const handleColumnItemClick = (columnIndex: number) => (itemId: number) => {
     setActiveIds((a) => {
@@ -29,6 +39,7 @@ const CatalogueContainer = () => {
       },
     ];
   }, [activeIds]);
+  
   return <Catalogue columns={columns} />;
 };
 
